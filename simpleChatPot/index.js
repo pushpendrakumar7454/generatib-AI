@@ -1,7 +1,16 @@
 import {ChatGroq} from '@langchain/groq'
-import {} from  'readline'
+import rl from 'readline'
 import dotenv from 'dotenv'
 dotenv.config()
+
+const readLine=rl.createInterface({
+    input:process.stdin,
+    output:process.stdout
+})
+
+const userInput=await readLine.question("Enter your quation-: ")
+
+
 
 
 const model=new ChatGroq({
