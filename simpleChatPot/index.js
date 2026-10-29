@@ -10,3 +10,9 @@ const readLine=rl.createInterface({
     input:stdin,
     output:stdout
 })
+
+
+const model=new ChatGroq({
+    model:"openai/gpt-oss-120b",
+    apiKey:process.env.GROQ_API_KEY
+})
