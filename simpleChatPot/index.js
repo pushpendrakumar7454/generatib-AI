@@ -10,4 +10,4 @@ const model=new ChatGroq({
 
 
 const response=await model.invoke("hello")
-console.log(response)
+console.log(response.content)
