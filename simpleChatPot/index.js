@@ -18,7 +18,16 @@ const model=new ChatGroq({
 while(true){
     const userInput=await readline.question("Enter your quations-: ")
 
-    const response=await model.invoke(userInput)
+    const stream=await model.stream([
+       {
+         role:"user",
+        content:userInput
+       }
+    ])
 
-    console.log(response.content)
+    for await ( const chunk of stream){
+        process.stdout.write(chunk.content)
+    }
+    process.stdout.write("/n")
+
 }
