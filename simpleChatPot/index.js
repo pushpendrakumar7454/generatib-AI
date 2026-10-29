@@ -29,5 +29,5 @@ while (true) {
         process.stdout.write(chunk.content)
     }
 
-    process.stdout.write("/n")
+    process.stdout.write("\n")
 }
