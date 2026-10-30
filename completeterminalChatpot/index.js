@@ -13,6 +13,9 @@ const creaateEvent =tool(
             date,title,description
         })
         return "created event"
+    },{
+        name:"createdEvent",
+        description:"Create a new event with a date, title and description"
     }
     
 )
