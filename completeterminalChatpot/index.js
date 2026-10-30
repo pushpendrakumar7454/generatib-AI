@@ -1,8 +1,21 @@
 import { ChatGroq } from "@langchain/groq";
 import rl from 'node:readline/promises'
 import {stdin,stdout} from 'node:process'
+import {tool} from 'langchain'
 import dotenv from 'dotenv'
 dotenv.config()
+
+
+const events=[]
+const creaateEvent =tool(
+    async function({date,title, description }){
+        events.push({
+            date,title,description
+        })
+        return "created event"
+    }
+    
+)
 
 
 const readLine=rl.createInterface({
