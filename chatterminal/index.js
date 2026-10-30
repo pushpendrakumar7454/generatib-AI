@@ -6,15 +6,37 @@ import * as z from 'zod';
 import dotenv from 'dotenv'
 dotenv.config()
 
+let events=[]
 
+const createEvent=tool(
+    async function({title,description,date}){
+        events.push({
+            title,description,date
+        })
+        return "created event"
 
-const createEventTool=(
-    async function({name,description,date}){
-
-    },{
-        
+    },
+    {
+        name:"createEvent",
+        description:"create a event with title,description and date",
+        schema:z.object({
+            title:z.string(),
+            description:z.string(),
+            date:z.string()
+        })
     }
 )
+
+const getEventTool=tool(
+    async function({}){
+        return events
+    },{
+        name:"getEvents",
+        description:"get all events",
+        schema:z.object()
+    }
+)
+
 
 const readLine=rl.createInterface({
     input:stdin,
@@ -26,20 +48,30 @@ const model=new ChatGroq({
     apiKey:process.env.GROQ_API_KEY
 })
 
-const messages=[]
+const agent=createAgent({
+    model,
+    tools:[createEvent,getEventTool]
+})
+
 
 while(true){
-    const userInput=await readLine.question("Enter your message- ")
-    messages.push({
-        role:"user",
-        content:userInput
+    const userInput=await readLine.question("Enter your quation-: ")
+
+    const stream=await agent.stream({
+        messages:[
+            {
+                role:"user",
+                content:userInput
+            }
+        ]
+    },{
+        streamMode:"messages"
     })
 
-    const stream=await model.stream(messages)
-     let aiResponse=""
-    for await (const chunk of stream){
-       aiResponse+=chunk.content
-       process.stdout.write(chunk.content)
+    for await (const chunk of stream ){
+        const [messages]=chunk
+        process.stdout.write(messages.content)
     }
+
     process.stdout.write("\n")
 }
