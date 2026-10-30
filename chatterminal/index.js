@@ -20,19 +20,19 @@ const model=new ChatGroq({
 const messages=[]
 
 while(true){
-    const userInput=await readLine.question("Enter your quation-: ")
-     
+    const userInput=await readLine.question("Enter your quations-: ")
+
     messages.push({
         role:"user",
         content:userInput
     })
 
-    const stream=await model.stream(messages);
+    const stream=await model.stream(messages)
 
-    let aiResponse=""
+    let aiMessages=""
 
-    for await(const chunk of stream){
-        aiResponse+=chunk.content
+    for await (const chunk of stream){
+        aiMessages+=chunk.content
         process.stdout.write(chunk.content)
     }
 
