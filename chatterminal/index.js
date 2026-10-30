@@ -34,6 +34,10 @@ while(true){
         aiResponse+=chunk.content
         process.stdout.write(chunk.content)
     }
+    messages.push({
+        role:"assistant",
+        content:aiResponse
+    })
 
     process.stdout.write("\n")
 }
