@@ -31,3 +31,9 @@ export async function saveApiKey(apiKey){
         apiKey
     }))
 }
+
+
+export async function getApiKey(){
+    const setting=await getSettingFile()
+    return setting.apiKey || null
+}
