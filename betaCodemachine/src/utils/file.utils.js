@@ -17,5 +17,6 @@ export async function getSettingFile(){
     return  JSON.parse(content)
    } catch (error) {
     fs.writeFile(settingFilePath,JSON.stringify({}))
+    return {}
    }
 }
