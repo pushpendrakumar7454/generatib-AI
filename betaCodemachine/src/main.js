@@ -14,8 +14,9 @@ async function main() {
     const response= await getApiKey();
     
     if(response.error){
-        console.log(response.error)
-        return 
+        const apiKey=await rl.question("Please enter a apiKey-: ")
+        await saveApiKey(apiKey)
+        return main()
     }
     const apiKey=response.apiKey
 
