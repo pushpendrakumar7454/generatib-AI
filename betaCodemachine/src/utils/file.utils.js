@@ -1,5 +1,5 @@
-import fs from 'fs'
-import  {CONFIG_DIR,HOME_DIR}  from './constant'
+import fs from 'fs/promises'
+import  {CONFIG_DIR,HOME_DIR}  from './constant.js'
 import path from 'path'
 
 export async function getSettingFile(){
@@ -10,13 +10,13 @@ export async function getSettingFile(){
     await fs.mkdir(CONFIG_DIR,{recursive:true})
    }
 
-   const settingFilePath=path.json(CONFIG_DIR,"setting.json")
+   const settingFilePath=path.join(CONFIG_DIR,"setting.json")
    try {
     await fs.access(settingFilePath)
     const content=await fs.readFile(settingFilePath,"utf-8")
     return  JSON.parse(content)
    } catch (error) {
-    fs.writeFile(settingFilePath,JSON.stringify({}))
+    await fs.writeFile(settingFilePath,JSON.stringify({}))
     return {}
    }
 }

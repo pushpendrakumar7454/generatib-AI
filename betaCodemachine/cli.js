@@ -1,8 +1,3 @@
-#!/usr/bin/env node
-import os from 'os'
+import main from './src/main.js';
 
-
-const homeDir=os.homedir()
-// const cliFilePath=path.join(homeDir,".cli.js")
-
-console.log(homeDir)
+main();
