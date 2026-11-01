@@ -14,6 +14,7 @@ async function main() {
     const response= await getApiKey();
     
     if(response.error){
+        console.error("Invalid apiKey and expired apiKey")
         const apiKey=await rl.question("Please enter a apiKey-: ")
         await saveApiKey(apiKey)
         return main()
