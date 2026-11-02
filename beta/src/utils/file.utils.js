@@ -22,3 +22,17 @@ export async function getSettingFile(){
         return {}
     }
 }
+
+
+export async function saveApiKey(){
+    const settingFilePath=path.join(CONFIG_DIR,"settings.json")
+    const settingContent=await getSettingFile()
+
+    await fs.writeFile(settingFilePath,JSON.stringify({
+        ...settingContent,
+        apiKey
+    }))
+}
+
+
+export 
