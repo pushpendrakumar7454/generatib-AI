@@ -1,7 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import {HOME_DIR,CONFIG_DIR} from './constant.js'
-import { json } from 'zod'
+import axios from 'axios'
 
 
 export async function getSettingFile(){
@@ -35,4 +35,26 @@ export async function saveApiKey(){
 }
 
 
-export 
+export async function getApiKey(){
+    const setting=await getSettingFile()
+    const apiKey=setting.apiKey ||null
+
+    if(!apiKey){
+        throw new Error("api key is found in setting.json")
+    }
+
+
+    try {
+        const response=await axios.get("https://api.groq.com/openai/v1/models",{
+            headers:{
+                Authorization:`Bearer ${apiKey}`
+            }
+        })
+
+        return apiKey
+    } catch (error) {
+        return {
+            error:"invalid apiKey"
+        }
+    }
+}
