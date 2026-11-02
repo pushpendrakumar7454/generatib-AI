@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-console.log("I am man");
+import main from "./src/main.js";
+
+main()

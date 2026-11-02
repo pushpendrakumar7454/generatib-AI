@@ -1,26 +1,24 @@
-import {getApiKey,getSettingFile,saveApiKey} from '../src/utils/file.utils.js'
-import readline from './utils/readline.js'
-
+import {getApiKey,getSettingFile,saveApiKey} from './utils/file.utils.js'
+import rl from './utils/readline.js'
 
 async function main(){
-    const settings= await getSettingFile()
-    
+    const settings=await getSettingFile()
+
     if(!settings.apiKey){
-        const apiKey=await readline.question("Please Enter api Key-: ")
+        const apiKey=await rl.question("Please Enter valid apiKey-: ")
         return saveApiKey(apiKey)
+
     }
-    
+
     const response=await getApiKey()
 
     if(response.error){
-        console.error("invalid api key and expried apikey")
+        console.error("invalid api key and expire api key")
 
-        const apiKey=await readline.question("Please Enter apiKey-: ")
+        const apiKey=await rl.question("Please Enter apiKey-: ")
         await saveApiKey(apiKey)
         return main()
     }
     const apiKey=response.apiKey
-    readline.close()
-  
-
+    rl.close()
 }
