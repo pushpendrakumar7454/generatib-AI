@@ -7,10 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "bin":{
-    "beta":"./cli.js"
+  "bin": {
+    "beta": "./cli.js"
   },
   "author": "",
   "license": "ISC",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@langchain/langgraph": "^1.6.0",
+    "dotenv": "^18.0.9",
+    "langchain": "^1.6.0",
+    "zod": "^4.6.7"
+  }
 }
