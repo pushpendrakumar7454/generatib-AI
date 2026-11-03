@@ -2,7 +2,7 @@ import {StateGraph,START,END} from '@langchain/langgraph'
 import * as z from 'zod'
 import { LLMNode } from './node.js'
 import rl from '../../utils/readline.js'
-import {HumanMessage} from 'langchain'
+import {HumanMessage,SystemMessage} from 'langchain'
 
 const stateGraph=z.object({
     messages:z.array(z.any())
@@ -17,10 +17,10 @@ const graph=new StateGraph(stateGraph)
 
 
 export default async function initGraph(){
-    let messages=[]
+    let messages=[new SystemMessage("you always response under 10 words")]
     while(true){
         const userInput=await rl.question("Enter your quation-: ")
-        messages.push(userInput)
+        messages.push(new HumanMessage(userInput))
         const response=await graph.invoke({
         messages
         })
