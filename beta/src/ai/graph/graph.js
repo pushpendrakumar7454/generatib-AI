@@ -23,6 +23,6 @@ export default async function initGraph(){
         const response=await graph.invoke({
             messages:[new HumanMessage(userInput) ]
         })
-        console.log("AI",response)
+ 
     }
 }

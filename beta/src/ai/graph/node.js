@@ -18,6 +18,7 @@ export async function LLMNode(state){
         process.stdout.write(chunk.content)
         aiMessages+=chunk.content
     }
+    process.stdout.write("\n")
 
     return {
         messages:[...state.messages,

@@ -21,7 +21,7 @@ export async function LLMNode(state) {
         aiMessages += chunk.content
     }
 
-    console.log()
+   process.stdout.write("\n")
 
     return {
         messages: [
