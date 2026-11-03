@@ -12,7 +12,7 @@ const  graph=new StateGraph(stateFormat)
 .addNode("LLMNode",LLMNode)
 .addEdge(START,"LLMNode")
 .addEdge("LLMNode",END)
-.compile
+.compile()
 
 
 export default async function initGraph(){
