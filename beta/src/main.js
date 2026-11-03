@@ -1,6 +1,6 @@
 import {getApiKey,getSettingFile,saveApiKey} from './utils/file.utils.js'
 import rl from './utils/readline.js'
-
+import initGraph from '../src/ai/graph/graph.js'
 
 async function main(){
     const settings=await getSettingFile()
@@ -20,6 +20,7 @@ async function main(){
         return main()
     }
     const apiKey=response.apiKey
+    await initGraph()
     rl.close()
 
 }
