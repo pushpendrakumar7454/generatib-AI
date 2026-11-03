@@ -15,8 +15,8 @@ export async function LLMNode(state){
 
     let aiMessages=""
     for await(const chunk of stream){
-        process.stdout.write(chunk.text)
-        aiMessages+=chunk.text
+        process.stdout.write(chunk.content)
+        aiMessages+=chunk.content
     }
 
     return {
