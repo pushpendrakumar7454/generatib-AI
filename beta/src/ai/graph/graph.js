@@ -20,10 +20,11 @@ export default async function initGraph(){
     let messages=[new SystemMessage("you always response under 10 words")]
     while(true){
         const userInput=await rl.question("Enter your quation-: ")
+        if(userInput.toLowerCase()==="/bye"){
+            break
+        }
         messages.push(new HumanMessage(userInput))
-        const response=await graph.invoke({
-        messages
-        })
+        const response=await graph.invoke({messages},{context:{username:"pushpendra"}})
 
         messages=response.messages
  
