@@ -8,6 +8,15 @@ export async function LLMNode(state){
         apiKey:await getApiKey()
     })
 
+    const stream=await model.stream(state.messages)
+    process.stdout.write("AI: " )
+    const aiMessages=""
+
+    for await (const chunk of stream){
+        process.stdout.write(chunk.text)
+        aiMessages+=chunk.text
+    }
+
     console.log(state)
     return state
 
