@@ -16,13 +16,12 @@ const  graph=new StateGraph(stateFormat)
 
 
 export default async function initGraph(){
-
+    let messages=[]
     while(true){
         const userInput=await rl.question("Enter your quation-: ")
-
-        const response=await graph.invoke({
-            messages:[new HumanMessage(userInput)  ]
-        })
+        messages.push(new HumanMessage(userInput))
+        const response=await graph.invoke({messages})
+        messages=response.messages
      
     }
 
