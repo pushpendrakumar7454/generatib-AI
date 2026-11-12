@@ -24,3 +24,5 @@ async function main(){
     rl.close()
 
 }
+
+export default main
