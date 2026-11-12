@@ -3,7 +3,7 @@ import {getApiKey} from '../../utils/file.utils.js'
 import {AIMessage} from 'langchain'
 import {upsertFileTool} from '../tools/file.tools.js'
 
-export async function LLMNode(state){
+export async function LLMNode(state,config){
     console.log(state)
    
     let model=new ChatGroq({
@@ -31,4 +31,12 @@ export async function LLMNode(state){
         ]
     }
 
+}
+
+
+export async function toolNode(state,config){
+    const messages=state.messages
+    const lastMessage=state.messages[state.messages.length-1]
+
+    const toolCalls=lastMessage.tool_calls
 }
