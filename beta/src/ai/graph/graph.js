@@ -13,6 +13,7 @@ const graph = new StateGraph(stateGraph)
     .addNode("LLMNode", LLMNode)
     .addNode("ToolNode", ToolNode)
     .addEdge(START, "LLMNode")
+    .addEdge("ToolNode","LLMNode")
     .addConditionalEdges(
         "LLMNode",
         (state) => {
