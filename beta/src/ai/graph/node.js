@@ -1,7 +1,7 @@
 import {ChatGroq} from '@langchain/groq'
 import {getApiKey} from '../../utils/file.utils.js'
 import {AIMessage} from 'langchain'
-import {upsertFileTool} from '../tools/file.tools.js'
+import {upsertFile} from '../tools/file.tools.js'
 import * as fileTools from '../tools/file.tools.js'
 
 export async function LLMNode(state,config){
@@ -12,7 +12,7 @@ export async function LLMNode(state,config){
         apiKey:(await getApiKey()).apiKey
     })
 
-    const modelWithTool=model.bindTools([upsertFileTool])
+    const modelWithTool=model.bindTools([upsertFile])
    
     let stream=await modelWithTool.stream(state.messages)
     process.stdout.write("AI: ")
@@ -35,7 +35,7 @@ export async function LLMNode(state,config){
 }
 
 
-export async function toolNode(state,config){
+export async function ToolNode(state,config){
     const messages=state.messages
     const lastMessage=state.messages[state.messages.length-1]
 
