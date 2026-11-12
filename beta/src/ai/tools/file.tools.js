@@ -53,6 +53,7 @@ export const listFiles=tool(
       }
     }
     await traverse(folder)
+    return JSON.stringify(results)
   },
   {
     name:"listFiles",
