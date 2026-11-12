@@ -34,3 +34,21 @@ export const upsertFile = tool(
 );
 
 export const deleteFilesTools = {};
+
+
+export const readFIle=tool(
+  async function({files}){
+    const results=await Promise.all(files.map(async(file)=>{
+      const content=await fs.readFile(file.path,"utf-8")
+    }))
+    return results
+  },{
+    name:"readFiles",
+    description:"Read the content of multiple files at once",
+    schema:z.object({
+      files:z.array(z.object({
+        path:z.string().describe("absolute path of the file to be read")
+      }))
+    })
+  }
+)
