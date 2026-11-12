@@ -27,3 +27,6 @@ export const upsertFileTool = tool(
     ),
   }),
 });
+
+
+export const deleteFilesTools={}

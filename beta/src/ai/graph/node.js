@@ -2,6 +2,7 @@ import {ChatGroq} from '@langchain/groq'
 import {getApiKey} from '../../utils/file.utils.js'
 import {AIMessage} from 'langchain'
 import {upsertFileTool} from '../tools/file.tools.js'
+import * as fileTools from '../tools/file.tools.js'
 
 export async function LLMNode(state,config){
     console.log(state)
@@ -39,4 +40,16 @@ export async function toolNode(state,config){
     const lastMessage=state.messages[state.messages.length-1]
 
     const toolCalls=lastMessage.tool_calls
+
+
+    const toolsResults=await Promise.all(toolCalls.map(async(toolCall)=>{
+        return await fileTools[toolCall.name].invoke(toolCall)
+    }))
+
+    return {
+        messages:[
+            ...state.messages,
+            ...toolsResults
+        ]
+    }
 }
