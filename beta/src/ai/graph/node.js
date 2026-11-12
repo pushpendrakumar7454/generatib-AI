@@ -16,10 +16,12 @@ export async function LLMNode(state){
     let stream=await modelWithTool.stream(state.messages)
     process.stdout.write("AI: ")
 
-    let aiMessages=""
+    let aiMessages=null
     for await(const chunk of stream){
         console.log(chunk)
         process.stdout.write(chunk.content)
+        if(!aiMessages) aiMessages=chunk
+        else aiMessages.concat(chunk)
         aiMessages+=chunk.content
     }
     process.stdout.write("\n")
