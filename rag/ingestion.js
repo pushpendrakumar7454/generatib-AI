@@ -3,6 +3,8 @@ import { PDFParse } from 'pdf-parse';
 import fs from 'fs';
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 import {CohereEmbeddings} from "@langchain/cohere"
+import dotenv from 'dotenv'
+dotenv.config()
 
 
 const parser = new PDFParse({
@@ -19,4 +21,16 @@ const textSplister= new RecursiveCharacterTextSplitter({
 })
 
 const chunks=await textSplister.splitText(text)
-console.log(chunks)
+
+
+
+//implement embading modeles
+
+const embeddings=new CohereEmbeddings({
+    model:"embed-v5.0-fast",
+    apiKey:process.env.COHERE_API_KEY
+})
+
+const vecter=await embeddings.embedDocuments(chunks)
+
+console.log(vecter)
