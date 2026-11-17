@@ -2,7 +2,7 @@
 import { PDFParse } from 'pdf-parse';
 import fs from 'fs';
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
-
+import {CohereEmbeddings} from "@langchain/cohere"
 
 
 const parser = new PDFParse({
