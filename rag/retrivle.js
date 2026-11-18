@@ -1,5 +1,7 @@
 import { ChatCohere, CohereEmbeddings } from "@langchain/cohere";
 import { Pinecone } from "@pinecone-database/pinecone";
+import {HumanMessage,AIMessage,ToolMessage} from 'langchain'
+
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -52,15 +54,13 @@ const model = new ChatCohere({
 });
 
 // Generate AI Response
-const response = await model.invoke(`
-Answer the question using the following context:
 
-${JSON.stringify(results)}
+const messages=[]
 
-Question: ${userInput}
+messages.push(new HumanMessage(userInput))
 
-If the answer is not available in the context,
-say you don't know.
-`);
+messages.push(new ToolMessage({
+    content:JSON.stringify(results)
+}))
 
-console.log("AI Response:", response.content);
+const response=
