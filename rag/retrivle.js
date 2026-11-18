@@ -1,4 +1,3 @@
-
 import { ChatCohere, CohereEmbeddings } from "@langchain/cohere";
 import { Pinecone } from "@pinecone-database/pinecone";
 import dotenv from "dotenv";
