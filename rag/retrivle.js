@@ -63,6 +63,9 @@ messages.push(new ToolMessage({
     content:JSON.stringify(results)
 }))
 
-const aiMessage=await model.invoke(messages)
+const aiMessage=await model.stream(messages)
 
-console.log(aiMessage)
+for await(const chunk of aiMessage){
+    process.stdout.write(chunk.content)
+}
+
