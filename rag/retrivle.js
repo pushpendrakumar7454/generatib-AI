@@ -7,14 +7,14 @@ const userInput = "Tell me about Aarav internship";
 
 // inisilize imbedding quary
 
-const embbedding=new CohereEmbeddings({
-    apiKey:process.env.COHERE_API_KEY,
-    model:"embed-v5,0-fast"
-})
+const embedding = new CohereEmbeddings({
+    apiKey: process.env.COHERE_API_KEY,
+    model: "embed-v4.0"
+});
 
-const vecter=await embbedding.embedQuery(userInput)
+const vector = await embedding.embedQuery(userInput);
 
-console.log(vecter)
+console.log(vector);
 
 const model = new ChatCohere({
     model: "command-a-03-2025",
