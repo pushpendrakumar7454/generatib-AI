@@ -63,4 +63,6 @@ messages.push(new ToolMessage({
     content:JSON.stringify(results)
 }))
 
-const response=
+const aiMessage=await model.invoke(messages)
+
+console.log(aiMessage)
