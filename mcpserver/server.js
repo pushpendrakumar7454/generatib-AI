@@ -1,5 +1,6 @@
 import {McpServer} from '@modelcontextprotocol/server'
 import * as z from 'zod'
+import {StdioServerTransport} from '@modelcontextprotocol/server/stdio'
 
 
 
@@ -32,4 +33,5 @@ server.registerTool(
 )
 
 
-
+const transport=new StdioServerTransport()
+await server.connect(transport)
