@@ -20,9 +20,16 @@ server.registerTool(
    async({title,start,end})=>{
       const event={title,start,end}
       EVENTS.push(event)
-      return event
+      return {
+        content:[
+            {
+                type:"text",
+                text:`Event created: ${title} from ${start} to ${end}`
+            }
+        ]
+      }
    }
-
 )
+
 
 
