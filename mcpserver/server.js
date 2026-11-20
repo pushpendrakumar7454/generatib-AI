@@ -2,6 +2,8 @@ import {McpServer} from '@modelcontextprotocol/server'
 import * as z from 'zod'
 
 
+
+let EVENTS=[]
 //mcpserver
 const server=new McpServer({name:"calender-server",version:"1.0.0"})
 
@@ -15,6 +17,11 @@ server.registerTool(
         end:z.string().describe("End time of the event")
      })
    },
+   async({title,start,end})=>{
+      const event={title,start,end}
+      EVENTS.push(event)
+      return event
+   }
 
 )
 
