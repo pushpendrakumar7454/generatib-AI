@@ -75,6 +75,7 @@ export const authLoginController = async (req, res) => {
       });
     }
 
+    
     const accessToken = generateAccessToken({ userId: user._id });
     const refreshToken = generateRefreshToken({ userId: user._id });
 
