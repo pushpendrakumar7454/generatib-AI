@@ -4,6 +4,7 @@ import apiInstance from '../../../config/apiInstance'
 export const registerUser=async(creticial)=>{
     try {
         const res=await apiInstance.post("/auth/register",creticial)
+        console.log(res)
         return res
     } catch (error) {
         console.log(error)
