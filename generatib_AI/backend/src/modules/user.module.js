@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    
+
     email: {
         type: String,
         required: true,
@@ -29,6 +29,6 @@ const userSchema = new mongoose.Schema({
     }
 });
 
-const userModel = mongoose.model("users", userSchema);
+const userModel = mongoose.model("genAIusers", userSchema);
 
 export default userModel
