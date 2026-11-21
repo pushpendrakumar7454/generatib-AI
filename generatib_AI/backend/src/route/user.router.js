@@ -13,4 +13,5 @@ router.get("/me",authenticate,authMeController)
 router.post("/logout",authenticate,authLogoutController)
 router.get("/findalluser",allUserController)
 
+
 export default router
