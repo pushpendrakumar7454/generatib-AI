@@ -4,9 +4,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { hydreadUser } from "../features/auth/api/useApi";
 import { addUser, setAuthLoading } from "../features/auth/state/authSlice";
-import Login from "../features/auth/ui/components/Login";
-import Register from "../features/auth/ui/components/Register";
-
+import Register from '../features/auth/ui/components/Register'
+import Login from '../features/auth/ui/components/Login'
 
 const AppRout = () => {
     const dispatch = useDispatch();
@@ -33,7 +32,7 @@ const AppRout = () => {
     const router = createBrowserRouter([
         {
             path: "/login",
-            element: <Login/>,
+            element:<Login/>
         },
         {
             path: "/register",

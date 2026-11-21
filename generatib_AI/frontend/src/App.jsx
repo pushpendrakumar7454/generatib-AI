@@ -1,9 +1,10 @@
 import React from 'react'
+import AppRoute from '../../frontend/src/router/AppRoute'
 
 const App = () => {
   return (
     <div>
-      <h1 className="text-red-500">App</h1>
+      <AppRoute/>
     </div>
   )
 }
