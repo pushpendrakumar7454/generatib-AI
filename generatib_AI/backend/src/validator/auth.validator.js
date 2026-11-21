@@ -8,6 +8,7 @@ export const registerValidator = [
         .isEmail().withMessage("Please enter a valid email address").bail()
         .trim()
         .isString().withMessage("Email must be string"),
+        
 
     body("username")
         .exists().withMessage("Username is required").bail().isString()
