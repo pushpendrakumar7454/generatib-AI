@@ -5,7 +5,7 @@ const messageSchema = new mongoose.Schema(
     {
         user: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+            ref: "genusers",
             required: true
         },
 
@@ -25,6 +25,6 @@ const messageSchema = new mongoose.Schema(
     }
 );
 
-const messageModel = mongoose.model("Message", messageSchema);
+const messageModel = mongoose.model("GenAIMessage", messageSchema);
 
 export default messageModel;

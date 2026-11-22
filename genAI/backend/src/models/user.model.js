@@ -7,4 +7,4 @@ const userSchema = new mongoose.Schema({
   refreshToken: { type: String, default: null, select: false }
 }, { timestamps: true });
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model("genusers", userSchema);
