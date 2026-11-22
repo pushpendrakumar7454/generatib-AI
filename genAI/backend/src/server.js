@@ -4,6 +4,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
+import converssationRoutes from './routes/conversation.route.js'
 
 dotenv.config();
 const app = express();
@@ -16,7 +17,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get("/", (req, res) => res.json({ message: "genAI auth API is running" }));
+
 app.use("/api/auth", authRoutes);
+app.use("/api/message",converssationRoutes)
 
 app.use((err, req, res, next) => {
   console.error(err);
