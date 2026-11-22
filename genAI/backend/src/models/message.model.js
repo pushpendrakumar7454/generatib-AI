@@ -1,30 +1,27 @@
-
 import mongoose from "mongoose";
 
-const messageSchema = new mongoose.Schema(
-    {
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "genusers",
-            required: true
-        },
 
-        title: {
-            type: String,
-            required: true,
-            trim: true
-        },
 
-        lastMessage: {
-            type: String,
-            default: ""
-        }
+export const messageSchema = new mongoose.Schema(
+  {
+    role: {
+      type: String,
+      enum: ["user", "assistant", "tool"],
+      required: true,
     },
-    {
-        timestamps: true
-    }
+    content: {
+      type: String,
+      required: true,
+    },
+    conversation: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "GenAIConversation",
+      required: true,
+    },
+  },
+  { timestamps: { createdAt: "createdAt", updatedAt: false } },
 );
 
-const messageModel = mongoose.model("GenAIMessage", messageSchema);
+messageSchema.index({ conversation: 1, createdAt: 1 });
 
-export default messageModel;
+export const MessageModel = mongoose.model("GenAiMessage", messageSchema);
