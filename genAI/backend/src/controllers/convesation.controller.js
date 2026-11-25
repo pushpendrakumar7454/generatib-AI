@@ -1,9 +1,10 @@
 export const handleMessageConversationController=async(req,res)=>{
     try {
-        const {content,conversation}=req.body
-
-        if(!conversation){
-            
+        const {content,conversation:conversationId}=req.body
+         
+        let conversation=null
+        if(!conversationId){
+                      
         }
         
     } catch (error) {
